@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - OgiRentStudio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <a href="{{ url_for('logout') }}" class="btn-delete" style="float: right; margin-bottom: 15px;">Logout</a>
+
+    <h1>OgiRentStudio - Admin</h1>
+
+    <h2>Daftar Users</h2>
+    {% if users %}
+        <ul>
+            {% for user in users %}
+                <li>
+                    <strong>{{ user.username }}</strong> - {{ "Admin" if user.is_admin else "Staff" }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Belum ada user.</p>
+    {% endif %}
+
+    <h2>Daftar Booking</h2>
+    {% if studios %}
+        <ul>
+            {% for studio in studios %}
+                <li>
+                    <strong>{{ studio.name }}</strong><br>
+                    Jam Mulai: {{ studio.start_time }}<br>
+                    Durasi: {{ studio.hours }} jam<br>
+                    Harga / jam: Rp {{ studio.price_per_hour }}<br>
+                    <strong>Total Harga: Rp {{ studio.total_price }}</strong><br>
+                    <a href="/delete/{{ studio.id }}" class="btn-delete">Hapus</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Belum ada booking.</p>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

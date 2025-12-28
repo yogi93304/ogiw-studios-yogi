@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>OgiRentStudio - Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <a href="{{ url_for('logout') }}" class="btn-delete" style="float: right; margin-bottom: 15px;">Logout</a>
+
+    <h1>OgiRentStudio</h1>
+    <h2>Booking Studio</h2>
+
+    <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Nama Penyewa" required>
+        <select name="start_time" required>
+            <option value="">Pilih Jam Mulai</option>
+            <option>4 pagi</option><option>5 pagi</option><option>6 pagi</option>
+            <option>7 pagi</option><option>8 pagi</option><option>9 pagi</option>
+            <option>10 pagi</option><option>11 siang</option><option>12 siang</option>
+            <option>1 siang</option><option>2 siang</option><option>3 siang</option>
+            <option>4 sore</option><option>5 sore</option><option>6 sore</option>
+            <option>7 malam</option><option>8 malam</option><option>9 malam</option>
+            <option>10 malam</option>
+        </select>
+        <input type="number" name="hours" placeholder="Jumlah Jam" required>
+        <button type="submit">Order</button>
+    </form>
+
+    <p style="text-align: center;"><strong>Harga per jam: Rp 100.000</strong></p>
+
+    <h2>Daftar Booking</h2>
+    {% if studios %}
+        <ul>
+            {% for studio in studios %}
+                <li>
+                    <strong>{{ studio.name }}</strong><br>
+                    Jam Mulai: {{ studio.start_time }}<br>
+                    Durasi: {{ studio.hours }} jam<br>
+                    Harga / jam: Rp {{ studio.price_per_hour }}<br>
+                    <strong>Total Harga: Rp {{ studio.total_price }}</strong>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Belum ada booking.</p>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

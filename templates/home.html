@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>OgiRentStudio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>OgiRentStudio</h1>
+    <p>Selamat datang di aplikasi penyewaan studio musik berbasis website By prayogacn.</p>
+    <p>Di sini kamu bisa memesan studio untuk latihan, rekaman, atau kegiatan musik lainnya.</p>
+    
+    <a href="{{ url_for('login') }}">
+        <button>Login</button>
+    </a>
+</div>
+
+</body>
+</html>
