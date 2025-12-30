@@ -9,7 +9,9 @@
 
 <div class="container">
 
-    <a href="{{ url_for('logout') }}" class="btn-delete" style="float: right; margin-bottom: 15px;">Logout</a>
+    <form action="{{ url_for('logout') }}" method="get" style="float: right; margin-bottom: 15px;">
+        <button type="submit" class="btn-delete">Logout</button>
+    </form>
 
     <h1>OgiRentStudio - Admin</h1>
 
@@ -35,8 +37,16 @@
                     Jam Mulai: {{ studio.start_time }}<br>
                     Durasi: {{ studio.hours }} jam<br>
                     Harga / jam: Rp {{ studio.price_per_hour }}<br>
-                    <strong>Total Harga: Rp {{ studio.total_price }}</strong><br>
-                    <a href="/delete/{{ studio.id }}" class="btn-delete">Hapus</a>
+                    <strong>Total Harga: Rp {{ studio.total_price }}</strong><br><br>
+
+                    <!-- DELETE STUDIO (POST METHOD - AMAN) -->
+                    <form action="{{ url_for('delete', id=studio.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn-delete"
+                            onclick="return confirm('Yakin ingin menghapus booking ini?')">
+                            Hapus
+                        </button>
+                    </form>
+
                 </li>
             {% endfor %}
         </ul>
